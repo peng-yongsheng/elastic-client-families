@@ -1,5 +1,8 @@
 language: java
 
+services:
+  - docker
+
 install:
   - jdk_switcher use oraclejdk8
 #  - mvn verify -P 2-4-6
