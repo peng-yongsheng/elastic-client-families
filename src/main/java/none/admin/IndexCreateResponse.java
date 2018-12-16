@@ -16,17 +16,21 @@
  *
  */
 
-package none;
+package none.admin;
 
-import org.junit.Test;
+import lombok.*;
+import none.AbstractResponse;
 
 /**
  * @author peng-yongsheng
  */
-public class ITTest {
+public class IndexCreateResponse extends AbstractResponse {
 
-    @Test
-    public void test() {
-        System.out.println("INTEGRATION TESTS");
+    @Getter @Setter private boolean acknowledged;
+    @Getter @Setter private boolean shardsAcknowledged;
+    @Getter @Setter private String index;
+
+    public IndexCreateResponse(int code, String message) {
+        super(code, message);
     }
 }

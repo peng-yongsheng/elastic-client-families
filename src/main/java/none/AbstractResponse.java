@@ -18,15 +18,18 @@
 
 package none;
 
-import org.junit.Test;
+import lombok.Getter;
 
 /**
  * @author peng-yongsheng
  */
-public class ITTest {
+public abstract class AbstractResponse {
 
-    @Test
-    public void test() {
-        System.out.println("INTEGRATION TESTS");
+    @Getter private final int code;
+    @Getter private final String message;
+
+    public AbstractResponse(int code, String message) {
+        this.code = code;
+        this.message = message;
     }
 }

@@ -16,17 +16,35 @@
  *
  */
 
-package none;
+package none.admin;
 
-import org.junit.Test;
+import com.google.gson.JsonObject;
 
 /**
  * @author peng-yongsheng
  */
-public class ITTest {
+public class Settings {
 
-    @Test
-    public void test() {
-        System.out.println("INTEGRATION TESTS");
+    private final JsonObject settings = new JsonObject();
+
+    public Settings put(String key, Number value) {
+        put(settings, key, value);
+        return this;
+    }
+
+    private void put(JsonObject element, String key, Number value) {
+        if (key.contains(".")) {
+            String property = key.substring(0, key.indexOf("."));
+            if (!element.has(property)) {
+                element.add(property, new JsonObject());
+            }
+            put(element.getAsJsonObject(property), key.substring(key.indexOf(".") + 1), value);
+        } else {
+            element.addProperty(key, value);
+        }
+    }
+
+    JsonObject build() {
+        return settings;
     }
 }

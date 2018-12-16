@@ -18,15 +18,18 @@
 
 package none;
 
-import org.junit.Test;
+import lombok.Getter;
 
 /**
  * @author peng-yongsheng
  */
-public class ITTest {
+@Getter
+public class HostPort {
+    private String host;
+    private int port;
 
-    @Test
-    public void test() {
-        System.out.println("INTEGRATION TESTS");
+    public HostPort(String host, int port) {
+        this.host = host;
+        this.port = port;
     }
 }

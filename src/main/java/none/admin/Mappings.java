@@ -16,17 +16,10 @@
  *
  */
 
-package none;
-
-import org.junit.Test;
+package none.admin;
 
 /**
  * @author peng-yongsheng
  */
-public class ITTest {
-
-    @Test
-    public void test() {
-        System.out.println("INTEGRATION TESTS");
-    }
+public class Mappings {
 }
