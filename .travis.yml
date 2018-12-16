@@ -5,7 +5,7 @@ services:
 
 before_install:
   - docker pull elasticsearch:6.5.3
-  - docker run -d -p 127.0.0.1:9200:9200 elasticsearch:6.5.3
+#  - docker run -d -p 127.0.0.1:9200:9200 elasticsearch:6.5.3
 #  - docker ps -a
 
 install:
