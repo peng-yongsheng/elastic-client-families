@@ -4,6 +4,8 @@ services:
   - docker
 
 before_install:
+  - docker pull elasticsearch:2.4.6
+  - docker pull elasticsearch:5.6.14
   - docker pull elasticsearch:6.5.3
   - docker ps -a
 
