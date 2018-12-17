@@ -39,16 +39,32 @@ public class AdminClient {
         Response response = client.call(request);
 
         IndexCreateResponse indexCreateResponse = new IndexCreateResponse(response.code(), response.message());
+
         if (response.code() == 200 && Objects.nonNull(response.body())) {
             Gson gson = new Gson();
 
             JsonObject body = gson.fromJson(response.body().charStream(), JsonObject.class);
-            indexCreateResponse.setAcknowledged(body.get("acknowledged").getAsBoolean());
-            indexCreateResponse.setShardsAcknowledged(body.get("shards_acknowledged").getAsBoolean());
-            indexCreateResponse.setIndex(body.get("index").getAsString());
 
             if (logger.isDebugEnabled()) {
                 logger.debug("Status Code: {}, message: {}, body: {}", response.code(), response.message(), body);
+            }
+
+            if (body.has("acknowledged")) {
+                indexCreateResponse.setAcknowledged(body.get("acknowledged").getAsBoolean());
+            } else {
+                indexCreateResponse.setAcknowledged(true);
+            }
+
+            if (body.has("shards_acknowledged")) {
+                indexCreateResponse.setShardsAcknowledged(body.get("shards_acknowledged").getAsBoolean());
+            } else {
+                indexCreateResponse.setShardsAcknowledged(true);
+            }
+
+            if (body.has("index")) {
+                indexCreateResponse.setIndex(body.get("index").getAsString());
+            } else {
+                indexCreateResponse.setIndex(indexName);
             }
         }
 
