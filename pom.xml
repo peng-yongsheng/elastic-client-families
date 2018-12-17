@@ -203,6 +203,9 @@
                                     <name>elasticsearch:${elasticsearch.docker.version}</name>
                                     <alias>elastic-client-families-test-integration</alias>
                                     <run>
+                                        <ports>
+                                            <port>9200:9200</port>
+                                        </ports>
                                         <wait>
                                             <log>started</log>
                                             <time>30000</time>
