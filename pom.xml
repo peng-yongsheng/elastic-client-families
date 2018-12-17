@@ -50,6 +50,7 @@
         <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
         <docker-maven-plugin.version>0.27.2</docker-maven-plugin.version>
         <maven-jar-plugin.version>2.3.2</maven-jar-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M2</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -137,6 +138,11 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -152,6 +158,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>IT*.class</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -188,9 +203,12 @@
                                     <name>elasticsearch:${elasticsearch.docker.version}</name>
                                     <alias>elastic-client-families-test-integration</alias>
                                     <run>
+                                        <ports>
+                                            <port>9200:9200</port>
+                                        </ports>
                                         <wait>
                                             <log>started</log>
-                                            <time>10000</time>
+                                            <time>30000</time>
                                         </wait>
                                     </run>
                                 </image>
