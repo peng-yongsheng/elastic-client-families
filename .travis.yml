@@ -4,20 +4,20 @@ services:
   - docker
 
 before_install:
-  - docker pull elasticsearch:2.4.6
-  - docker pull elasticsearch:5.6.14
-  - docker pull elasticsearch:6.5.3
+#  - docker pull elasticsearch:2.4.6
+#  - docker pull elasticsearch:5.6.14
+#  - docker pull elasticsearch:6.5.3
   - docker ps -a
 
 install:
-  - jdk_switcher use oraclejdk8
-  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:2.4.6
+#  - jdk_switcher use oraclejdk8
+#  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:2.4.6
   - mvn verify -P 2-4-6
-  - docker kill elastic-client-families-test-integration
-  - docker rm -f elastic-client-families-test-integration
-  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:5.6.14
+#  - docker kill elastic-client-families-test-integration
+#  - docker rm -f elastic-client-families-test-integration
+#  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:5.6.14
   - mvn verify -P 5-6-14
-  - docker kill elastic-client-families-test-integration
-  - docker rm -f elastic-client-families-test-integration
-  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:6.5.3
+#  - docker kill elastic-client-families-test-integration
+#  - docker rm -f elastic-client-families-test-integration
+#  - docker run -d -p 127.0.0.1:9200:9200 --name elastic-client-families-test-integration elasticsearch:6.5.3
   - mvn verify -P 6-5-3
